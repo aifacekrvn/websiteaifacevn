@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách dự án đã thực hiện</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        width: 100%;
+      }
+      /* header */
+      .header-bg {
+        background: url(../image/Background.png) no-repeat center center/cover;
+        width: 100%;
+        height: 560px;
+      }
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent;
+        padding: 10px 20px;
+        width: 100%;
+      }
+      .logo-section .logo {
+        text-decoration: none;
+        font-size: 3em;
+        color: red;
+        border-bottom: 4px solid red;
+        font-weight: 900;
+        font-family: "Bruno Ace SC", cursive;
+      }
+      .project-section {
+        display: flex;
+        align-items: center;
+      }
+      .project-label {
+        margin-right: 10px;
+        color: white;
+        font-size: 16px;
+      }
+      ul {
+        margin: 0;
+      }
+      .dropdown .dropdown-toggle {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .dropdown-menu {
+        background-color: #444;
+        border: none;
+      }
+      .dropdown-item {
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .dropdown-item:hover {
+        background-color: #555;
+      }
+      .training-section,
+      .profile-section {
+        display: flex;
+        align-items: center;
+      }
+      .icon-item a {
+        display: none;
+      }
+      .service-item a,
+      .icon-item a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+      }
+      .service-item:hover {
+        text-decoration: 1px underline #fff;
+      }
+      .service-item a:hover,
+      .icon-item a:hover {
+        background-color: #444;
+        border-radius: 5px;
+      }
+      .social-section {
+        display: flex;
+        align-items: center;
+      }
+      .social-links {
+        display: flex;
+        gap: 15px;
+        list-style: none;
+      }
+
+      .social-links li a {
+        color: white;
+        font-size: 30px;
+      }
+
+      .social-links li a:hover {
+        color: #aaa;
+      }
+      .header-bg-content {
+        height: 300px;
+        padding-top: 120px;
+      }
+      .header-bg-title {
+        font-size: 2.25rem;
+        font-weight: 900;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+      }
+      .header-bg-sub-title {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: white;
+        margin: 1rem 0 0;
+        text-align: center;
+      }
+      .contact-wrapper {
+        margin: 1.5rem 0 0;
+        text-align: center;
+      }
+      .contact-btn {
+        background-color: #e50913;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1.5rem;
+        font-weight: 500;
+        cursor: pointer;
+        user-select: none;
+        border: 0;
+        border-radius: 0.25rem;
+        transition: all 0.3s ease;
+      }
+      .contact-btn:hover {
+        background-color: #c11219;
+      }
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: row;
+          align-items: center;
+        }
+        .header-bg-title {
+          font-size: 1.75rem;
+        }
+        .icon-item a {
+          display: block;
+        }
+        .service-item a {
+          display: none;
+        }
+        .project-section,
+        .social-section {
+          display: none;
+        }
+        .logo-section,
+        .training-section,
+        .profile-section,
+        .social-section {
+          margin-bottom: 10px;
+        }
+
+        .social-links {
+          justify-content: center;
+          width: 100%;
+        }
+        .header-bg-content {
+          padding: 64px 20px 0 20px;
+        }
+      }
+
+      /* body */
+      .project-container {
+        width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: rgba(62, 47, 138, 0.8);
+        cursor: pointer;
+      }
+      a:hover {
+        text-decoration: none;
+        color: rgb(109, 83, 237);
+      }
+      .index {
+        font-family: "Pacifico", sans-serif;
+        font-size: 5rem;
+        font-weight: 600;
+        line-height: 1.2;
+        color: rgba(62, 47, 138, 0.8);
+      }
+      .title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: rgba(62, 47, 138, 0.8);
+      }
+      img,
+      video {
+        width: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        max-height: 420px;
+        height: 100%;
+      }
+      .item {
+        display: flex;
+        padding: 20px;
+        height: 450px;
+        align-items: center;
+      }
+      .item.bg-project-custom {
+        background-color: rgba(62, 47, 138, 0.3);
+      }
+      .w-30 {
+        width: 40%;
+      }
+      .w-70 {
+        width: 60%;
+      }
+      .pl-40 {
+        padding-left: 40px;
+      }
+      .item-desc {
+        color: #1e1e1e;
+        line-height: 1.4;
+      }
+      .hide {
+        display: none;
+      }
+      @media screen and (max-width: 768px) {
+        .item {
+          flex-direction: column;
+          height: auto;
+          padding: 20px 40px 50px;
+        }
+        .revert-col {
+          flex-direction: column-reverse !important;
+        }
+        .w-70 {
+          width: 100%;
+        }
+        .w-30 {
+          width: 100%;
+        }
+        img {
+          margin-top: 20px;
+        }
+        .pl-40 {
+          padding-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="project-container">
+      <header>
+        <div class="header-bg">
+          <div class="header-container" style="top: 0px">
+            <!-- Logo Section -->
+            <span class="logo-section">
+              <a href="../index.html" class="logo">Keri</a>
+            </span>
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Project Section -->
+              <span class="project-section">
+                <div class="project-dropdown-container">
+                  <div class="dropdown">
+                    <button
+                      class="bg-transparent text-white py-1 px-3 rounded dropdown-toggle"
+                      type="button"
+                      data-toggle="dropdown"
+                      aria-expanded="false"
+                      id="project_big"
+                      aria-haspopup="true"
+                    >
+                      Dự án đã thực hiện
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="project_big">
+                      <a class="dropdown-item" href="#">Mobile App</a>
+                      <a class="dropdown-item" href="#">Web App</a>
+                      <a class="dropdown-item" href="#">Desktop</a>
+                    </div>
+                  </div>
+                </div>
+              </span>
+
+              <!-- Training Section -->
+              <span class="training-section">
+                <div class="service-item">
+                  <a
+                    href="../training.html"
+                    class="bg-transparent text-white py-1 px-3 rounded"
+                    >TRAINING</a
+                  >
+                </div>
+                <div class="icon-item">
+                  <a href="../training.html">
+                    <i
+                      class="bx bxs-graduation"
+                      style="font-size: 35px; color: white"
+                    ></i>
+                  </a>
+                </div>
+              </span>
+
+              <!-- Profile Section -->
+              <span class="profile-section">
+                <div class="service-item">
+                  <a
+                    href="../gioi-thieu-pm/index.html"
+                    class="bg-transparent text-white py-1 px-3 rounded"
+                    >PROFILE</a
+                  >
+                </div>
+                <div class="icon-item">
+                  <a href="../gioi-thieu-pm/index.html">
+                    <i
+                      class="bx bxs-graduation"
+                      style="font-size: 35px; color: white"
+                    ></i>
+                  </a>
+                </div>
+              </span>
+
+              <!-- Social Media Section -->
+              <span class="social-section">
+                <ul class="social-links">
+                  <li>
+                    <a href="#"><i class="bx bxl-facebook-circle"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="bx bxl-instagram"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="bx bxl-github"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="bx bxl-youtube"></i></a>
+                  </li>
+                </ul>
+              </span>
+            </div>
+          </div>
+          <div class="header-bg-content">
+            <h1 class="header-bg-title">PROJECT PROFILE</h1>
+            <p class="header-bg-sub-title">
+              Hơn 15 năm kinh nghiệm phát triển phần mềm
+            </p>
+            <div class="contact-wrapper">
+              <button role="button" class="contact-btn" type="submit">
+                SĐT/Zalo: 0792151123 hoặc 0792161123
+                <i class="bx bx-chevron-right" style="font-size: 1.5rem"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="list-item">
+        <div class="item">
+          <div class="w-30">
+            <a href="./NamPhuongFood/index.html" target="_blank">
+              <span class="index">01</span>
+              <div class="title">Nam Phương Food</div>
+            </a>
+            <br />
+            <div class="item-desc">
+              - Đăng nhập, Tạo thông tin Nhân sự <br />
+              - Kinh doanh & Xuất nhập khẩu <br />
+              - Quản lý CRM - Mua hàng <br />
+            </div>
+          </div>
+          <div class="w-70">
+            <a href="./NamPhuongFood/index.html" target="_blank">
+              <img src="./img/nam-phuong-food.jpg" alt="Nam Phương Food" />
+            </a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w-70">
+            <a href="./OtoPhuMan/index.html" target="_blank">
+              <img src="./img/oto-phu-man.jpg" alt="Ô Tô Phú Mẫn" />
+            </a>
+          </div>
+          <div class="w-30 pl-40">
+            <a href="./OtoPhuMan/index.html" target="_blank">
+              <span class="index">02</span>
+              <div class="title">Ô Tô Phú Mẫn</div>
+            </a>
+            <br />
+            <div class="item-desc">
+              - Đăng nhập <br />
+              - Quản lý khách hàng <br />
+              - Bán hàng dịch vụ <br />
+              - Bán xe <br />
+              - Thống kê<br />
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w-30">
+            <a href="./GioiThieuUngDung/index.html" target="_blank">
+              <span class="index">03</span>
+              <div class="title">Quản Lý Trường Học</div>
+            </a>
+            <br />
+            <div class="item-desc">
+              - Đăng nhập <br />
+              - Quản lý học sinh <br />
+              - Quản lý điểm <br />
+              - Quản lý học phí <br />
+            </div>
+          </div>
+          <div class="w-70">
+            <a href="./GioiThieuUngDung/index.html" target="_blank">
+              <img src="./img/AI.jpg" alt="AI School" />
+            </a>
+          </div>
+        </div>
+
+        <div class="item item-inline">
+          <div class="w-70">
+            <img src="./img/van-thu-luu-tru.png" alt="văn thư lưu trữ" />
+            <video class="hide" src="./video/van-thu.mp4" controls></video>
+          </div>
+          <div class="w-30 pl-40">
+            <span class="index">04</span>
+            <div class="title">Văn Thư Lưu Trữ</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý danh mục pháp luật <br />
+              - Quản lý văn thư <br />
+              - Quản lý hợp đồng & tiến độ <br />
+              - Quản lý lương <br />
+              - Cơ cấu tổ chức<br />
+            </div>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-30 pl-40">
+            <span class="index">05</span>
+            <div class="title">Quản Lý Bán Hàng Doanh Nghiệp</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý bán hàng <br />
+              - Quản lý sản phẩm <br />
+              - Quản lý mua hàng <br />
+              - Kế toán <br />
+              - Cơ cấu tổ chức<br />
+            </div>
+          </div>
+          <div class="w-70">
+            <img
+              src="./img/ban-hang-doanh-nghiep.png"
+              alt="bán hàng doanh nghiệp"
+            />
+            <video
+              class="hide"
+              src="./video/ban-hang-doanh-nghiep.mp4"
+              controls
+            ></video>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-70">
+            <img
+              src="./img/2. Quản lý chung cư - Giúp quản lý nhà cho thuê, tiền cho thuê, khách hàng cho thuê, tạo tài khoản cho nhân sự.png"
+              alt="Chung cư"
+            />
+            <video class="hide" src="./video/chungcu.mp4" controls></video>
+          </div>
+          <div class="w-30 pl-40">
+            <span class="index">06</span>
+            <div class="title">Quản Lý Chung Cư</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý khách hàng <br />
+              - Quản lý nhà <br />
+              - Quản lý hợp đồng <br />
+              - Quản lý tiền <br />
+              - Quản lý nhân sự<br />
+            </div>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-30">
+            <span class="index">07</span>
+            <div class="title">Quản Lý Xuất Nhập Kho</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý xuất / nhập kho <br />
+              - Quản lý chi phí <br />
+              - Quản lý lợi nhuận <br />
+              - Cơ cấu tổ chức<br />
+            </div>
+          </div>
+          <div class="w-70">
+            <img
+              src="./img/1. Aladin - Phần mềm quảng lý xuất nhập kho, quản lý thu chi các khoản của doanh nghiệp, tạo tài khoản nhân sự.png"
+              alt="Kế toán"
+            />
+            <video class="hide" src="./video/Aladin.mp4" controls></video>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-70">
+            <img
+              src="./img/5. Phần mềm quản lý nhân viên đi làm xa, gửi định vị về admin nhằm quản lý thời gian và vị trí nhân sự đi làm.png"
+              alt="nhân viên"
+            />
+            <video class="hide" src="./video/geopro.mp4" controls></video>
+          </div>
+          <div class="w-30 pl-40">
+            <span class="index">08</span>
+            <div class="title">Quản Lý Nhân Viên</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý nhân viên đi làm xa <br />
+              - Quản văn thời gian và vị trí nhân viên <br />
+              - Cơ cấu tổ chức<br />
+            </div>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-30">
+            <span class="index">09</span>
+            <div class="title">Môi Giới</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý người mua / bán <br />
+              - Cấu hình <br />
+              - Cơ cấu tổ chức<br />
+            </div>
+          </div>
+          <div class="w-70">
+            <img
+              src="./img/6. Phần mềm môi giới - phần mềm trung gian giúp các bên cung cấp và bên có nhu cầu tương hợp vơi nhau.png"
+              alt="Môi Giới"
+            />
+            <video class="hide" src="./video/moigioi.mp4" controls></video>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-70">
+            <img
+              src="./img/7. Phần mêm quản lý bảo trì - Quản lý công việc giao việc cho nhân viên, quản lý nhân viên đi làm từ xa, quản lý thiết bị, vật tư, KPI.png"
+              alt="Bảo trì"
+            />
+            <video class="hide" src="./video/ngolan.mp4" controls></video>
+          </div>
+          <div class="w-30 pl-40">
+            <span class="index">10</span>
+            <div class="title">Quản Lý Bảo Trì</div>
+            <br />
+            <div class="item-desc">
+              - Quản công trình <br />
+              - Quản lý kho <br />
+              - Quản lý chấm công <br />
+              - Quản lý KPI <br />
+              - Cơ cấu tổ chức<br />
+            </div>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-30">
+            <span class="index">11</span>
+            <div class="title">Quản Lý Vận Đơn</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý danh mục <br />
+              - Quản lý mua bán <br />
+              - Quản lý kế toán <br />
+              - Quản lý báo cáo <br />
+            </div>
+          </div>
+          <div class="w-70">
+            <img
+              src="./img/8. Phần mềm quản lý vận đơn cho công ty vận chuyển quốc tế.png"
+              alt="Vận Đơn"
+            />
+            <video class="hide" src="./video/sgbay.mp4" controls></video>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-70">
+            <img
+              src="./img/4. Phần mềm quản lý kế toán, bán hàng, lương, quy trình sản xuất của doanh nghiệp chế biến thủy hải sản.png"
+              alt="Aladin"
+            />
+            <video class="hide" src="./video/ke-toan.mp4" controls></video>
+          </div>
+          <div class="w-30 pl-40">
+            <span class="index">12</span>
+            <div class="title">Quản Lý Kế Toán</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý bán hàng <br />
+              - Quản lý lương <br />
+              - Quản lý quy trình sản xuất <br />
+            </div>
+          </div>
+        </div>
+        <div class="item item-inline">
+          <div class="w-30 pl-40">
+            <span class="index">13</span>
+            <div class="title">Quản Lý Cơ Khí</div>
+            <br />
+            <div class="item-desc">
+              - Quản lý sản xuất <br />
+              - Quản lý kho <br />
+            </div>
+          </div>
+          <div class="w-70">
+            <img
+              src="./img/3. Phần mềm quản lý sản xuất ngành hàng cơ khí, quản lý nguyên vật liệu, khách hàng, doanh thu, quy trình sản xuất cơ khí.png"
+              alt="Aladin"
+            />
+            <video class="hide" src="./video/cokhianpha.mp4" controls></video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.querySelectorAll(".item").forEach((item, index) => {
+        if (index % 2 !== 0) {
+          item.classList.add("bg-project-custom", "revert-col");
+        }
+      });
+      document.querySelectorAll(".item-inline").forEach((item, index) => {
+        const img = item.querySelector("img");
+        const video = item.querySelector("video");
+
+        img.addEventListener("click", () => {
+          img.classList.add("hide");
+          video.classList.remove("hide");
+          video.play();
+        });
+      });
+    </script>
+  </body>
+</html>
