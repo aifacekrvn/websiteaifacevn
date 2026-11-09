@@ -1,0 +1,287 @@
+<html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b766e">
+<meta name="description" content="Thông tin bảo mật hệ thống điểm danh nhận diện khuôn mặt Hikvision và ứng dụng quản lý điểm danh.">
+<title>Bảo mật hệ thống điểm danh | Hikvision</title>
+<style>
+:root{
+  --ink:#142b35;--muted:#61747c;--teal:#087f75;--teal2:#0da99a;
+  --mint:#e9f8f5;--line:#dce9e7;--paper:#f6faf9;--white:#fff;
+  --navy:#102d3a;--gold:#e5a83b;--shadow:0 18px 50px rgba(16,45,58,.09);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.65}
+a{color:inherit}
+.container{width:min(1160px,calc(100% - 40px));margin:auto}
+.topbar{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.01em}
+.brand-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,var(--teal),#13b7a7);display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px #087f7530}
+.brand-mark svg{width:22px}
+.nav{display:flex;gap:24px;font-size:13px;color:var(--muted);font-weight:650}
+.nav a{text-decoration:none}.nav a:hover{color:var(--teal)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#0b303b 0%,#0a5c5a 56%,#0c8a7e 100%);color:#fff;border-radius:30px;padding:72px 7%;box-shadow:var(--shadow)}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid #ffffff1c;border-radius:50%;pointer-events:none}
+.hero:before{width:430px;height:430px;right:-100px;top:-190px}
+.hero:after{width:570px;height:570px;right:-170px;top:-250px}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #ffffff42;background:#ffffff12;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.pulse{width:7px;height:7px;border-radius:50%;background:#7ce5cf;box-shadow:0 0 0 5px #7ce5cf25}
+h1{font-size:clamp(34px,5.3vw,60px);line-height:1.08;letter-spacing:-.045em;margin:23px 0 18px;max-width:780px}
+.hero p{font-size:17px;color:#d6eeeb;max-width:650px;margin:0}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:750;font-size:13px;transition:.2s}
+.btn-primary{background:#fff;color:#075e57}.btn-outline{border:1px solid #ffffff66;color:#fff;background:#ffffff0b}
+.btn:hover{transform:translateY(-2px)}
+.hero-note{margin-top:25px;color:#c0e1dc;font-size:12px}
+.trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 70px}
+.trust-item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;gap:13px;align-items:center}
+.trust-icon{width:40px;height:40px;flex:none;border-radius:13px;background:var(--mint);color:var(--teal);display:grid;place-items:center}
+.trust-icon svg{width:20px;height:20px}
+.trust-item strong{display:block;font-size:13px}.trust-item span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+section{scroll-margin-top:25px;margin:70px 0}
+.section-kicker{color:var(--teal);font-size:11px;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+.section-title{font-size:clamp(27px,3.4vw,39px);line-height:1.16;letter-spacing:-.035em;margin:9px 0 12px}
+.section-lead{color:var(--muted);max-width:760px;margin:0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:30px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 8px 30px #102d3a08}
+.panel-head{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.panel-icon{width:50px;height:50px;border-radius:16px;background:var(--mint);color:var(--teal);display:grid;place-items:center;flex:none}
+.panel-icon svg{width:25px;height:25px}
+.panel h3{font-size:19px;margin:0;line-height:1.25}.panel-sub{color:var(--muted);font-size:12px;margin-top:4px}
+.check-list{list-style:none;padding:0;margin:16px 0 0}
+.check-list li{position:relative;padding:0 0 0 27px;margin:13px 0;color:#405760;font-size:14px}
+.check-list li:before{content:"✓";position:absolute;left:0;top:1px;width:18px;height:18px;border-radius:50%;background:#e3f6f1;color:#087f75;font-weight:900;font-size:12px;text-align:center;line-height:18px}
+.callout{margin-top:18px;background:#f0faf8;border-left:3px solid var(--teal2);padding:15px 17px;border-radius:0 12px 12px 0;color:#315a58;font-size:13px}
+.flow{display:grid;grid-template-columns:1fr 54px 1fr 54px 1fr;align-items:center;gap:8px;margin-top:30px}
+.flow-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 17px;text-align:center;min-height:175px}
+.flow-card .num{width:32px;height:32px;border-radius:10px;background:var(--mint);color:var(--teal);display:grid;place-items:center;font-size:12px;font-weight:900;margin:0 auto 12px}
+.flow-card strong{font-size:14px;display:block}.flow-card p{font-size:12px;color:var(--muted);margin:7px 0 0}
+.flow-arrow{text-align:center;color:#80aaa4;font-size:24px}
+.data-box{margin-top:26px;background:var(--navy);color:#fff;border-radius:22px;padding:28px}
+.data-box h3{margin:0 0 5px;font-size:18px}.data-box>p{margin:0;color:#c0d5d7;font-size:13px}
+.data-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.data-chip{background:#ffffff0d;border:1px solid #ffffff1a;border-radius:13px;padding:14px}
+.data-chip span{display:block;color:#a8c9c9;font-size:11px}.data-chip strong{display:block;margin-top:4px;font-size:13px}
+.privacy{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}
+.privacy-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px}
+.privacy-card h3{margin:0 0 10px;font-size:17px}.privacy-card p{font-size:13px;color:var(--muted);margin:0}
+.tag{display:inline-block;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:800;letter-spacing:.05em;margin-bottom:12px}
+.tag-teal{background:#e7f7f3;color:#08786f}.tag-blue{background:#edf3fb;color:#365e91}
+.server-security{background:linear-gradient(135deg,#e9f8f5,#f5fbfa);border:1px solid #cce9e3;border-radius:22px;padding:28px;margin-top:25px}
+.server-security h3{margin:0 0 17px;font-size:18px}
+.security-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.security-point{background:#ffffffc9;border:1px solid #dceee9;border-radius:14px;padding:15px}
+.security-point strong{display:block;font-size:13px}.security-point span{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+.disclaimer{font-size:12px;color:#687c82;background:#fff;border:1px dashed #c8d9d7;border-radius:13px;padding:14px 16px;margin-top:18px}
+.quote{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;margin-top:28px;position:relative}
+.quote:before{content:"“";font-family:Georgia,serif;font-size:70px;line-height:1;color:#b4e2d9;position:absolute;top:10px;left:23px}
+.quote p{position:relative;margin:20px 0 0;font-size:16px;line-height:1.8;color:#35505a}
+.sources{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.source{padding:15px;border:1px solid var(--line);border-radius:13px;background:#fff}
+.source strong{display:block;font-size:12px}.source a{font-size:11px;color:var(--teal);overflow-wrap:anywhere}
+.footer{margin-top:75px;background:#102d3a;color:#d5e4e5;padding:38px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.footer strong{color:#fff}.footer p{font-size:11px;color:#a9c0c2;margin:5px 0 0}
+.footer a{font-size:12px;color:#bce6df;text-decoration:none}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:760px){
+ .container{width:min(100% - 28px,600px)}.topbar{height:62px}.nav{display:none}
+ .hero{padding:48px 25px;border-radius:23px}.hero p{font-size:15px}
+ .trust-strip{grid-template-columns:1fr;margin-bottom:50px;gap:9px}
+ .trust-item{padding:14px 16px}
+ section{margin:52px 0}
+ .two-col,.privacy{grid-template-columns:1fr}
+ .panel{padding:22px}
+ .flow{grid-template-columns:1fr;gap:8px}.flow-card{min-height:0;padding:18px}
+ .flow-arrow{transform:rotate(90deg);font-size:20px;line-height:1}
+ .data-grid{grid-template-columns:1fr 1fr}
+ .security-grid{grid-template-columns:1fr}
+ .sources{grid-template-columns:1fr}
+ .footer-inner{align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<header class="container topbar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4.5 6v5.5c0 4.8 3.2 7.8 7.5 9.5 4.3-1.7 7.5-4.7 7.5-9.5V6L12 3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></svg>
+    </div>
+    <span>HỆ THỐNG ĐIỂM DANH</span>
+  </div>
+  <nav class="nav" aria-label="Điều hướng chính">
+    <a href="#hikvision">Thiết bị</a><a href="#server">Máy chủ</a><a href="#privacy">Quyền riêng tư</a><a href="#principles">Nguyên tắc</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow"><span class="pulse"></span> An toàn dữ liệu &amp; quyền riêng tư</div>
+      <h1>Điểm danh thông minh.<br>Bảo vệ dữ liệu có trách nhiệm.</h1>
+      <p>Hệ thống kết hợp thiết bị nhận diện khuôn mặt Hikvision và ứng dụng Web quản lý điểm danh, với phạm vi dữ liệu và quyền truy cập được phân tách rõ ràng.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#architecture">Khám phá cơ chế bảo mật <span aria-hidden="true">↓</span></a>
+        <a class="btn btn-outline" href="#privacy">Tìm hiểu dữ liệu được lưu</a>
+      </div>
+      <div class="hero-note">Hệ thống được xây dựng nhằm hỗ trợ quản lý điểm danh tập trung, bảo vệ thông tin và kiểm soát quyền truy cập trong quá trình sử dụng.</div>
+    </div>
+  </section>
+
+  <div class="trust-strip reveal visible">
+    <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4.5 6v5.5c0 4.8 3.2 7.8 7.5 9.5 4.3-1.7 7.5-4.7 7.5-9.5V6L12 3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></svg></div><div><strong>Thiết bị chuyên dụng</strong><span>Giảm phần mềm không cần thiết</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 9h10M7 13h6"></path></svg></div><div><strong>Dữ liệu có chọn lọc</strong><span>Chỉ phục vụ mục đích điểm danh</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V9l8-5 8 5v11"></path><path d="M9 20v-6h6v6M2 20h20"></path></svg></div><div><strong>Máy chủ công ty quản lý</strong><span>Kiểm soát truy cập và vận hành tập trung</span></div></div>
+  </div>
+
+  <section id="architecture" class="reveal visible">
+    <div class="section-kicker">Kiến trúc bảo mật</div>
+    <h2 class="section-title">Hai lớp bảo vệ, hai nhiệm vụ riêng biệt</h2>
+    <p class="section-lead">Thiết bị Hikvision thực hiện nhận diện tại điểm đặt máy. Ứng dụng Web nhận dữ liệu cần thiết để hiển thị và quản lý lịch sử điểm danh.</p>
+    <div class="flow">
+      <div class="flow-card"><div class="num">01</div><strong>Thiết bị Hikvision</strong><p>Đăng ký và xác thực khuôn mặt theo chức năng của thiết bị.</p></div>
+      <div class="flow-arrow" aria-hidden="true">→</div>
+      <div class="flow-card"><div class="num">02</div><strong>Truyền thông tin điểm danh</strong><p>Gửi mã định danh, họ tên, thời gian và ảnh hiển thị theo cấu hình tích hợp.</p></div>
+      <div class="flow-arrow" aria-hidden="true">→</div>
+      <div class="flow-card"><div class="num">03</div><strong>Máy chủ công ty</strong><p>Lưu thông tin điểm danh và hình ảnh phục vụ bảng điểm danh.</p></div>
+    </div>
+  </section>
+
+  <section id="hikvision" class="reveal visible">
+    <div class="section-kicker">Lớp bảo vệ thứ nhất</div>
+    <h2 class="section-title">Bảo mật khuôn mặt trên thiết bị Hikvision</h2>
+    <p class="section-lead">Thiết bị điểm danh là thiết bị chuyên dụng cho nhận diện và kiểm soát ra vào, khác với điện thoại hoặc máy tính cá nhân đa mục đích.</p>
+    <div class="two-col">
+      <article class="panel">
+        <div class="panel-head"><div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2.5" width="14" height="19" rx="2.5"></rect><path d="M9 6h6M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4M9.5 14.5c.7.8 1.5 1.2 2.5 1.2s1.8-.4 2.5-1.2"></path></svg></div><div><h3>Dữ liệu nhận diện khuôn mặt</h3><div class="panel-sub">Được xử lý để phục vụ xác thực</div></div></div>
+        <ul class="check-list">
+          <li>Thiết bị sử dụng công nghệ nhận diện khuôn mặt để xác thực người thực hiện điểm danh.</li>
+          <li>Thiết bị Hikvision được trang bị các tính năng bảo vệ dữ liệu nhận diện theo từng dòng sản phẩm và cấu hình sử dụng.</li>
+          <li>Dữ liệu nhận diện được quản lý theo cơ chế bảo mật và quyền quản trị của thiết bị.</li>
+          <li>Tính năng chống giả mạo khuôn mặt phụ thuộc model và cấu hình cụ thể.</li>
+        </ul>
+        <div class="callout"><strong>Điểm cần hiểu:</strong> Dữ liệu mẫu khuôn mặt dùng để nhận diện trên thiết bị khác với ảnh thu nhỏ dùng để hiển thị lịch sử điểm danh trên Web.</div>
+      </article>
+      <article class="panel">
+        <div class="panel-head"><div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4M7 8h10M7 11h5"></path></svg></div><div><h3>Thiết bị chuyên dụng</h3><div class="panel-sub">Giảm bề mặt rủi ro không cần thiết</div></div></div>
+        <p style="color:var(--muted);font-size:14px;margin:0">Có thể hình dung thiết bị như một thiết bị chuyên dụng được cấu hình cho một nhiệm vụ cụ thể, thay vì một chiếc điện thoại cá nhân có thể cài nhiều ứng dụng khác nhau.</p>
+        <ul class="check-list">
+          <li>Không sử dụng như máy tính đa năng để cài đặt tùy ý ứng dụng bên thứ ba.</li>
+          <li>Ít thành phần phần mềm không liên quan hơn có thể giúp giảm bề mặt tấn công.</li>
+          <li>Cần đặt mật khẩu quản trị mạnh, giới hạn truy cập mạng và cập nhật firmware theo khuyến nghị nhà sản xuất.</li>
+        </ul>
+        <div class="callout">Ví dụ so sánh này giúp dễ hình dung, không phải cam kết rằng thiết bị luôn an toàn hơn mọi điện thoại cá nhân.</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="server" class="reveal visible">
+    <div class="section-kicker">Lớp bảo vệ thứ hai</div>
+    <h2 class="section-title">Bảo mật ứng dụng Web và máy chủ công ty</h2>
+    <p class="section-lead">Máy chủ do công ty quản lý và vận hành tập trung. Dữ liệu được giới hạn theo mục đích sử dụng và quyền truy cập được cấp.</p>
+    <div class="data-box">
+      <h3>Thông tin phục vụ bảng điểm danh</h3>
+      <p>Theo mô hình tích hợp của hệ thống, dữ liệu lưu để quản lý gồm các trường sau:</p>
+      <div class="data-grid">
+        <div class="data-chip"><span>Thông tin 01</span><strong>Mã học sinh</strong></div>
+        <div class="data-chip"><span>Thông tin 02</span><strong>Họ và tên</strong></div>
+        <div class="data-chip"><span>Thông tin 03</span><strong>Thời gian điểm danh</strong></div>
+        <div class="data-chip"><span>Thông tin 04</span><strong>Ảnh hiển thị điểm danh</strong></div>
+      </div>
+    </div>
+    <div class="server-security">
+      <h3>Các biện pháp bảo vệ máy chủ</h3>
+      <div class="security-grid">
+        <div class="security-point"><strong>01 · Mã hóa đường truyền</strong><span>Đường truyền HTTPS/TLS bảo vệ thông tin trong quá trình trao đổi giữa ứng dụng và máy chủ.</span></div>
+        <div class="security-point"><strong>02 · Tài khoản và phân quyền</strong><span>Giới hạn người được phép đăng nhập, xem, thêm, sửa hoặc quản lý dữ liệu.</span></div>
+        <div class="security-point"><strong>03 · Kiểm soát máy chủ</strong><span>Hạn chế cổng mạng và dịch vụ không cần thiết; bảo vệ tài khoản quản trị.</span></div>
+        <div class="security-point"><strong>04 · Bảo vệ cơ sở dữ liệu</strong><span>Không mở quyền truy cập cơ sở dữ liệu trực tiếp cho người dùng không có thẩm quyền.</span></div>
+        <div class="security-point"><strong>05 · Bảo vệ hình ảnh</strong><span>Kiểm soát quyền truy cập ảnh, tránh để đường dẫn hình ảnh ở chế độ công khai.</span></div>
+        <div class="security-point"><strong>06 · Nhật ký và sao lưu</strong><span>Ghi nhận hoạt động phù hợp và sao lưu định kỳ để hỗ trợ kiểm tra, khôi phục khi cần.</span></div>
+      </div>
+    </div>
+    <div class="callout"><strong>Quản lý tập trung:</strong> Hệ thống giúp đơn vị quản lý thông tin điểm danh trên một nền tảng thống nhất, thuận tiện cho việc theo dõi, tra cứu và quản lý dữ liệu theo tài khoản được cấp.</div>
+  </section>
+
+  <section id="privacy" class="reveal visible">
+    <div class="section-kicker">Minh bạch dữ liệu</div>
+    <h2 class="section-title">Ảnh điểm danh không đồng nghĩa với dữ liệu sinh trắc học</h2>
+    <p class="section-lead">Cần phân biệt rõ ảnh hiển thị trên Web và dữ liệu mẫu khuôn mặt được thiết bị sử dụng để nhận diện.</p>
+    <div class="privacy">
+      <article class="privacy-card">
+        <span class="tag tag-teal">TRÊN THIẾT BỊ HIKVISION</span>
+        <h3>Dữ liệu phục vụ nhận diện</h3>
+        <p>Được thiết bị xử lý để so khớp và xác thực khuôn mặt theo chức năng của model. Dữ liệu nhận diện được xử lý theo chức năng và cơ chế quản lý riêng của thiết bị Hikvision.</p>
+      </article>
+      <article class="privacy-card">
+        <span class="tag tag-blue">TRÊN MÁY CHỦ CÔNG TY</span>
+        <h3>Hình ảnh phục vụ hiển thị</h3>
+        <p>Ảnh được lưu để hiển thị trực quan trên bảng điểm danh. Ảnh này được sử dụng để hiển thị và tra cứu trực quan, không phải dữ liệu mẫu sinh trắc học dùng cho chức năng xác thực danh tính.</p>
+      </article>
+    </div>
+    <div class="quote">
+      <p>Hình ảnh hiển thị trên bảng điểm danh chỉ phục vụ mục đích nhận diện trực quan và quản lý học sinh. Hình ảnh được lưu trữ trên máy chủ do công ty quản lý và vận hành. Việc truy cập được quản lý theo tài khoản và quyền hạn được cấp. Hình ảnh này không phải dữ liệu mẫu sinh trắc học dùng để xác thực danh tính và không thay thế quy trình xác thực sinh trắc học chuyên dụng của ngân hàng.</p>
+    </div>
+  </section>
+
+  <section id="principles" class="reveal visible">
+    <div class="section-kicker">Nguyên tắc vận hành</div>
+    <h2 class="section-title">Thu thập đúng mục đích. Truy cập đúng thẩm quyền.</h2>
+    <p class="section-lead">Hệ thống hướng đến việc chỉ xử lý những thông tin cần thiết cho hoạt động điểm danh, quản lý và tra cứu.</p>
+    <div class="two-col">
+      <article class="panel">
+        <h3 style="margin:0 0 10px">Cam kết về mục đích sử dụng</h3>
+        <ul class="check-list">
+          <li>Thông tin được sử dụng để ghi nhận, tra cứu và quản lý điểm danh.</li>
+          <li>Hình ảnh trên Web phục vụ hiển thị trực quan và tra cứu thông tin điểm danh.</li>
+          <li>Quyền xem và quản lý dữ liệu cần được giới hạn theo nhiệm vụ.</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h3 style="margin:0 0 10px">Trách nhiệm bảo vệ dữ liệu</h3>
+        <ul class="check-list">
+          <li>Quản lý tài khoản và mật khẩu có trách nhiệm.</li>
+          <li>Duy trì cập nhật, sao lưu và kiểm tra an toàn hệ thống.</li>
+          <li>Rà soát quyền truy cập và xử lý khi phát hiện truy cập bất thường.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="reveal visible">
+    <div class="section-kicker">Tài liệu tham khảo</div>
+    <h2 class="section-title">Cơ sở kỹ thuật để tìm hiểu thêm</h2>
+    <p class="section-lead">Các tài liệu dưới đây cung cấp thêm thông tin về thiết bị Hikvision và những nguyên tắc kỹ thuật liên quan đến bảo mật hệ thống.</p>
+    <div class="sources">
+      <div class="source"><strong>Hikvision – Face Recognition Terminal User Manual</strong><a href="https://www.hikvision.com/content/dam/hikvision/products/S000000001/S000000080/S000000103/S000000105/OFR000135/M000039845/User_Manual/UD17697B-D_Baseline_DS-K1T642-Series-Face-Recognition-Terminal_User-Manual_V3.3_20231115.PDF" target="_blank" rel="noopener">Tài liệu chính thức DS-K1T642 Series: mục Data Protection ↗</a></div>
+      <div class="source"><strong>Hikvision – MinMoe Face Recognition Terminals</strong><a href="https://securitylab.hikvision.com/europe/products/Access-Control-Products/terminals/face-recognition-terminal/" target="_blank" rel="noopener">Thông tin tính năng mã hóa dữ liệu và chống giả mạo ↗</a></div>
+      <div class="source"><strong>NIST – Security and Privacy Controls</strong><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">Khung kiểm soát bảo mật và quyền riêng tư ↗</a></div>
+      <div class="source"><strong>OWASP – Transport Layer Security</strong><a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html" target="_blank" rel="noopener">Khuyến nghị bảo vệ đường truyền TLS ↗</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div><strong>HỆ THỐNG ĐIỂM DANH NHẬN DIỆN KHUÔN MẶT</strong><p>Thông tin bảo mật dữ liệu và quyền riêng tư · Tài liệu giới thiệu hệ thống</p></div>
+    <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Trở về đầu trang ↑</a>
+  </div>
+</footer>
+<script>
+(function(){
+  const items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(el=>el.classList.add('visible'));return;}
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}
+    });
+  },{threshold:.08});
+  items.forEach(el=>observer.observe(el));
+})();
+</script>
+
+</body></html>
