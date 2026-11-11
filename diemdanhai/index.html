@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4b2365">
+    <title>Điểm danh AI - Tài liệu hệ thống</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Plus Jakarta Sans", Arial, sans-serif;
+            color: #30243a;
+            background: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-width: 320px;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(180deg, #fff 0%, #fbf7fc 100%);
+        }
+
+        .topbar {
+            background: #4b2365;
+            color: #fff;
+        }
+
+        .topbar-inner,
+        main {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .topbar-inner {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #fff;
+            color: #4b2365;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .brand-name {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: .02em;
+        }
+
+        .brand-caption {
+            margin-top: 2px;
+            color: #eadcf2;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .top-link {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .top-link:hover,
+        .top-link:focus-visible {
+            color: #ffd2ec;
+        }
+
+        main {
+            padding: 64px 0 48px;
+        }
+
+        .intro {
+            max-width: 720px;
+            margin: 0 auto 34px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 13px;
+            border: 1px solid #eadcf0;
+            border-radius: 999px;
+            background: #f7effa;
+            color: #7d3474;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 17px 0 12px;
+            color: #34203f;
+            font-size: clamp(30px, 5vw, 46px);
+            line-height: 1.15;
+            letter-spacing: -.04em;
+        }
+
+        .intro p {
+            margin: 0;
+            color: #6b6072;
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .menu-card {
+            display: flex;
+            min-height: 220px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 26px;
+            border: 1px solid #eadcf0;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 12px 32px rgb(70 34 99 / 7%);
+            color: inherit;
+            text-decoration: none;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+
+        .menu-card:hover,
+        .menu-card:focus-visible {
+            transform: translateY(-3px);
+            border-color: #c9a6d8;
+            box-shadow: 0 18px 38px rgb(70 34 99 / 13%);
+            outline: none;
+        }
+
+        .card-icon {
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: #f4eafa;
+            color: #6b3588;
+            font-size: 21px;
+        }
+
+        .menu-card h2 {
+            margin: 19px 0 8px;
+            color: #382044;
+            font-size: 19px;
+        }
+
+        .menu-card p {
+            margin: 0;
+            color: #706477;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .card-action {
+            margin-top: auto;
+            padding-top: 22px;
+            color: #7a3478;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        footer {
+            padding: 20px;
+            border-top: 1px solid #eee6f1;
+            color: #817588;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .topbar-inner,
+            main {
+                width: min(100% - 28px, 1120px);
+            }
+
+            main {
+                padding-top: 42px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-card {
+                min-height: 200px;
+            }
+
+            .top-link {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="./" aria-label="Điểm danh AI - Trang chủ">
+                <span class="brand-mark" aria-hidden="true">AI</span>
+                <span>
+                    <span class="brand-name">ĐIỂM DANH AI</span>
+                    <span class="brand-caption">HỆ THỐNG ĐIỂM DANH</span>
+                </span>
+            </a>
+            <a class="top-link" href="https://aiface.vn/">Điểm danh AI</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro" aria-labelledby="page-title">
+            <span class="eyebrow">ĐIỂM DANH AI · TÀI LIỆU</span>
+            <h1 id="page-title">Chào mừng đến với Điểm danh AI</h1>
+            <p>Chọn một mục bên dưới để xem thông tin bảo mật dữ liệu hoặc hướng dẫn sử dụng phần mềm điểm danh AI.</p>
+        </section>
+
+        <nav class="menu-grid" aria-label="Danh mục tài liệu">
+            <a class="menu-card" href="gioithieu-phanmem-diemdanh-ai.html">
+                <span class="card-icon" aria-hidden="true">📘</span>
+                <h2>Giới thiệu phần mềm điểm danh AI</h2>
+                <p>Hướng dẫn sử dụng hệ thống dành cho Ban Giám hiệu, Giáo viên chủ nhiệm và Phụ huynh.</p>
+                <span class="card-action">Xem hướng dẫn sử dụng <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="menu-card" href="https://aiface.vn/diemdanhai/baomatdata.html">
+                <span class="card-icon" aria-hidden="true">🔒</span>
+                <h2>Bảo mật dữ liệu</h2>
+                <p>Thông tin về việc bảo vệ, lưu trữ và sử dụng dữ liệu trong hệ thống Điểm danh AI.</p>
+                <span class="card-action">Xem thông tin bảo mật <span aria-hidden="true">→</span></span>
+            </a>
+        </nav>
+    </main>
+
+    <footer>© Điểm danh AI · Hệ thống điểm danh</footer>
+</body>
+
+</html>
